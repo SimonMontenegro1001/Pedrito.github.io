@@ -6,9 +6,20 @@ body {
 }
 
 .container {
-    max-width: 800px;
+    width: 80%;
+    max-width: 600px;
     margin: 0 auto;
     padding: 20px;
+    text-align: center;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+}
+
+/* Estilos adicionales para pantallas pequeñas */
+@media screen and (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
 }
 
 h1 {
@@ -31,13 +42,22 @@ select {
 button {
     display: block;
     width: 100%;
-    padding: 10px;
+    padding: 20px;
     margin-top: 20px;
     font-size: 18px;
     background-color: #007bff;
     color: #fff;
     border: none;
+    border-radius: 10px;
     cursor: pointer;
+}
+
+/* Estilos adicionales para pantallas pequeñas */
+@media screen and (max-width: 600px) {
+    button {
+        padding: 15px;
+        font-size: 16px;
+    }
 }
 
 /* Estilos específicos de cada página */
