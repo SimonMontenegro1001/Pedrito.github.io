@@ -16,17 +16,30 @@
             // Redirigir a otra página si no se es ganador
             window.location.href = "index.html";
         } else {
-            // Mostrar el contenido de la página premio.html
-            document.write('<div class="container">');
-            document.write('<h1>Felicidades</h1>');
-            document.write('<p>¡Has ganado el premio!</p>');
-            document.write('<div class="video-container">');
-            document.write('<video width="640" height="360" controls autoplay>');
-            document.write('<source src="images/video.mp4" type="video/mp4">');
-            document.write('Tu navegador no admite la reproducción de videos.');
-            document.write('</video>');
-            document.write('</div>');
-            document.write('</div>');
+            // Verificar el soporte de video
+            var videoSupported = !!document.createElement('video').canPlayType;
+
+            if (videoSupported) {
+                // Mostrar el video si es compatible
+                document.write('<div class="container">');
+                document.write('<h1>Felicidades</h1>');
+                document.write('<p>¡Has ganado el premio!</p>');
+                document.write('<div class="video-container">');
+                document.write('<video width="640" height="360" controls autoplay>');
+                document.write('<source src="images/video.mp4" type="video/mp4">');
+                document.write('Tu navegador no admite la reproducción de videos.');
+                document.write('</video>');
+                document.write('</div>');
+                document.write('</div>');
+            } else {
+                // Mostrar una alternativa si no es compatible
+                document.write('<div class="container">');
+                document.write('<h1>Felicidades</h1>');
+                document.write('<p>¡Has ganado el premio!</p>');
+                document.write('<p>Desafortunadamente, tu proonga de navegador no admite la reproducción de videos.</p>');
+                document.write('<img src="images/premio.jpeg" alt="Premio">');
+                document.write('</div>');
+            }
         }
     </script>
 </body>
