@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Juego de Clickear</h1>
+        <p id="score">0 clics</p>
+        <p id="progress">0/0</p>
+        <p id="time">Tiempo restante: 0 segundos</p>
+        <button id="clickButton">Empezar</button>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        var score = 0;
+        var clicksRequired = 0;
+        var time = 0;
+        var interval;
+        var gameStarted = false;
+
+        // Obtener la dificultad seleccionada de localStorage
+        var difficulty = JSON.parse(localStorage.getItem("dificultad"));
+        if (difficulty) {
+            clicksRequired = difficulty.clicks;
+            time = difficulty.time;
+            document.getElementById("progress").innerText = score + "/" + clicksRequired;
+            document.getElementById("time").innerText = "Tiempo restante: " + time + " segundos";
+        }
+
+        // Actualizar el texto del botón según el estado del juego
+        function updateButton() {
+            var button = document.getElementById("clickButton");
+            if (gameStarted) {
+                button.innerText = "Clickea";
+            } else {
+                button.innerText = "Empezar";
+            }
+        }
+
+        // Manejar el evento de clic en el botón
+        function handleButtonClick() {
+            if (!gameStarted) {
+                gameStarted = true;
+                updateButton();
+
+                interval = setInterval(function () {
+                    time--;
+                    document.getElementById("time").innerText = "Tiempo restante: " + time + " segundos";
+
+                    if (time <= 0) {
+                        clearInterval(interval);
+                        alert("¡Se ha agotado el tiempo! Has perdido.");
+                        window.location.href = "index.html";
+                    }
+                }, 1000);
+            } else {
+                score++;
+                document.getElementById("score").innerText = score + " clics";
+                document.getElementById("progress").innerText = score + "/" + clicksRequired;
+
+                if (score >= clicksRequired) {
+                    clearInterval(interval);
+                    alert("¡Felicidades! Has alcanzado la cantidad requerida de clics.");
+                    localStorage.setItem("ganador", true);
+                    score = 0;
+                    window.location.href = "premio.html";
+                }
+            }
+        }
+
+        // Asociar la función handleButtonClick al evento de clic en el botón
+        document.getElementById("clickButton").addEventListener("click", handleButtonClick);
+
+        // Actualizar el texto del botón inicialmente
+        updateButton();
+    </script>
+</body>
+
+</html>
