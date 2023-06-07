@@ -13,6 +13,11 @@
         <p id="progress">0/0</p>
         <p id="time">Tiempo restante: 0 segundos</p>
         <button id="clickButton">Empezar</button>
+        <h3>Como jugar:</h3>
+        <ul>
+            <li>1) Tenes que clickear nomas.</li>
+            <li>2) Si ganas hay premio.</li>
+        </ul>
     </div>
 
     <script src="script.js"></script>
@@ -80,5 +85,20 @@
         updateButton();
     </script>
 </body>
+<footer>
+    <button id="secretButton">Clickeame para motivacion.</button>
+    <div id="secretContent" class="wrapper">
+        <span>G</span>
+        <span>A</span>
+        <span>Y</span>
+    </div>
+
+    <script>
+        document.getElementById("secretButton").addEventListener("click", function () {
+            document.getElementById("secretButton").style.display = "none";
+            document.getElementById("secretContent").style.display = "block";
+        });
+    </script>
+</footer>
 
 </html>

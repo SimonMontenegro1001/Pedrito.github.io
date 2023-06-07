@@ -3,16 +3,28 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+    background-color: #333;
+}
+
+footer {
+    padding: 1em;
 }
 
 .container {
     width: 80%;
     max-width: 600px;
-    margin: 0 auto;
+    margin: 20% auto 0;
     padding: 20px;
     text-align: center;
-    background-color: #f0f0f0;
+    background-color: #333;
+    color: #fff;
     border-radius: 10px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 /* Estilos adicionales para pantallas pequeñas */
@@ -39,7 +51,7 @@ select {
     font-size: 16px;
 }
 
-button {
+li>button {
     display: block;
     width: 100%;
     padding: 20px;
@@ -52,38 +64,115 @@ button {
     cursor: pointer;
 }
 
-/* Estilos adicionales para pantallas pequeñas */
-@media screen and (max-width: 600px) {
-    button {
-        padding: 15px;
-        font-size: 16px;
+#clickButton {
+    width: 200px;
+    height: 200px;
+    padding: 0;
+    margin: 20px auto;
+    font-size: 18px;
+    background-color: brown;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#clickButton:hover {
+    background-color: #8b4513;
+}
+
+#clickButton:active {
+    background-color: #d2691e;
+}
+
+#secretButton {
+    display: block;
+    margin: 0 auto;
+    font-size: 18px;
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+#secretButton:hover {
+    color: #d2691e;
+}
+
+#secretButton.clicked {
+    color: #d2691e;
+}
+
+#secretButton.clicked+#secretContent {
+    display: block;
+}
+
+/**/
+
+.wrapper {
+    text-align: center;
+    display: none;
+}
+
+.wrapper span {
+    font-weight: bold;
+    color: #4b4b4b;
+    animation: lighting 1000ms alternate infinite ease;
+}
+
+@keyframes lighting {
+
+    0%,
+    85% {
+        color: #4b4b4b;
+        text-shadow: none;
+    }
+
+    100% {
+        color: #fff200;
+        text-shadow: 0 0 5px #fff200, 0 0 3px #ff9f1a;
     }
 }
 
-/* Estilos específicos de cada página */
-#score,
-#progress,
-#time {
-    font-size: 20px;
-    text-align: center;
+.wrapper span:nth-child(1) {
+    animation-delay: 150ms;
 }
 
-#time {
-    margin-top: 30px;
+.wrapper span:nth-child(2) {
+    animation-delay: 300ms;
 }
 
-.video-container {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%;
-    /* Proporción del video 16:9 */
-    margin-top: 30px;
+.wrapper span:nth-child(3) {
+    animation-delay: 450ms;
 }
 
-.video-container video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+.wrapper span:nth-child(4) {
+    animation-delay: 600ms;
+}
+
+.wrapper span:nth-child(5) {
+    animation-delay: 750ms;
+}
+
+.wrapper span:nth-child(6) {
+    animation-delay: 900ms;
+    margin-left: 20px;
+}
+
+.wrapper span:nth-child(7) {
+    animation-delay: 1050ms;
+}
+
+.wrapper span:nth-child(8) {
+    animation-delay: 1200ms;
+}
+
+.wrapper span:nth-child(9) {
+    animation-delay: 1350ms;
+}
+
+.wrapper span:nth-child(10) {
+    animation-delay: 1500ms;
 }
