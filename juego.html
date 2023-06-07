@@ -41,9 +41,9 @@
         function updateButton() {
             var button = document.getElementById("clickButton");
             if (gameStarted) {
-                button.innerText = "Clickea";
+                button.innerText = "🫥🫥🫥";
             } else {
-                button.innerText = "Empezar";
+                button.innerText = "😊 Aquí 😊";
             }
         }
 
@@ -59,7 +59,7 @@
 
                     if (time <= 0) {
                         clearInterval(interval);
-                        alert("¡Se ha agotado el tiempo! Has perdido.");
+                        alert("Perdiste fracasado.");
                         window.location.href = "index.html";
                     }
                 }, 1000);
@@ -68,9 +68,21 @@
                 document.getElementById("score").innerText = score + " clics";
                 document.getElementById("progress").innerText = score + "/" + clicksRequired;
 
+                // Calcular la relación entre el puntaje actual y la cantidad requerida de clics
+                var progressRatio = score / clicksRequired;
+
+                // Calcular el tamaño de la sombra basado en la relación de progreso
+                var shadowSize = Math.floor(10 * progressRatio);
+
+                // Calcular el valor del color de la sombra basado en la relación de progreso
+                var shadowColorValue = Math.floor(255 * progressRatio);
+
+                // Establecer la sombra del texto del body
+                document.body.style.textShadow = "0 0 " + shadowSize + "px rgb(" + shadowColorValue + "," + shadowColorValue + "," + shadowColorValue + ")";
+
                 if (score >= clicksRequired) {
                     clearInterval(interval);
-                    alert("¡Felicidades! Has alcanzado la cantidad requerida de clics.");
+                    alert("Bien ahi gordito tryhard, ganaste el premio.");
                     localStorage.setItem("ganador", true);
                     score = 0;
                     window.location.href = "premio.html";

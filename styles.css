@@ -1,33 +1,53 @@
-/* Estilos generales */
+/* Varibales */
+
+:root {
+    --color-primario: #222;
+    --color-letra: #c6c6c6;
+    --color-cuadro: #fff980;
+    --color-boton: #9bdb41;
+}
+
+/* Estilos generales para dispositivos móviles */
+
 body {
     margin: 0;
     padding: 0;
+    border: 0;
     font-family: Arial, sans-serif;
-    background-color: #333;
+    background-color: var(--color-primario);
 }
 
 footer {
     padding: 1em;
 }
 
-.container {
-    width: 80%;
-    max-width: 600px;
-    margin: 20% auto 0;
-    padding: 20px;
-    text-align: center;
-    background-color: #333;
-    color: #fff;
-    border-radius: 10px;
-}
-
 ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    text-align: center;
+    /* Alineación al centro */
 }
 
+li {
+    text-align: center;
+    /* Ajusta la alineación del contenido de cada li */
+}
+
+
 /* Estilos adicionales para pantallas pequeñas */
+
+
+.container {
+    width: 80%;
+    margin: 1em auto 0;
+    padding: 20px;
+    text-align: center;
+    background-color: var(--color-primario);
+    color: var(--color-letra);
+    border-radius: 10px;
+}
+
 @media screen and (max-width: 600px) {
     .container {
         padding: 10px;
@@ -37,6 +57,7 @@ ul {
 h1 {
     text-align: center;
     font-size: 24px;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
 }
 
 label {
@@ -51,32 +72,52 @@ select {
     font-size: 16px;
 }
 
-li>button {
+.boton {
     display: block;
     width: 100%;
     padding: 20px;
     margin-top: 20px;
     font-size: 18px;
-    background-color: #007bff;
-    color: #fff;
+    background-color: var(--color-boton);
+    color: var(--color-primario);
     border: none;
     border-radius: 10px;
     cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+
 }
 
+.boton:hover {
+    background-color: #bbff5d;
+    /* Color de fondo al hacer hover */
+    color: black;
+    /* Color del texto al hacer hover */
+}
+
+.boton:active {
+    background-color: #bbff5d;
+    /* Color de fondo al hacer hover */
+    color: black;
+    /* Color del texto al hacer hover */
+    box-shadow: none;
+}
+
+
 #clickButton {
+    display: block;
     width: 200px;
     height: 200px;
     padding: 0;
     margin: 20px auto;
     font-size: 18px;
-    background-color: brown;
-    color: #fff;
+    background-color: var(--color-cuadro);
+    color: var(--color-primario);
     border: none;
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
+
 
 #clickButton:hover {
     background-color: #8b4513;
@@ -91,18 +132,21 @@ li>button {
     margin: 0 auto;
     font-size: 18px;
     background-color: transparent;
-    color: #fff;
+    color: var(--color-letra);
     border: none;
     cursor: pointer;
     transition: color 0.3s;
+    color: var(--color-letra);
+    background-color: #323232;
+    border-radius: 1em;
 }
 
 #secretButton:hover {
-    color: #d2691e;
+    color: #f3dddd;
 }
 
 #secretButton.clicked {
-    color: #d2691e;
+    color: #f3dddd;
 }
 
 #secretButton.clicked+#secretContent {
@@ -148,31 +192,19 @@ li>button {
     animation-delay: 450ms;
 }
 
-.wrapper span:nth-child(4) {
-    animation-delay: 600ms;
+.video-container {
+    margin-top: 20px;
 }
 
-.wrapper span:nth-child(5) {
-    animation-delay: 750ms;
+.video-container video {
+    width: 100%;
+    height: auto;
 }
 
-.wrapper span:nth-child(6) {
-    animation-delay: 900ms;
-    margin-left: 20px;
-}
 
-.wrapper span:nth-child(7) {
-    animation-delay: 1050ms;
-}
-
-.wrapper span:nth-child(8) {
-    animation-delay: 1200ms;
-}
-
-.wrapper span:nth-child(9) {
-    animation-delay: 1350ms;
-}
-
-.wrapper span:nth-child(10) {
-    animation-delay: 1500ms;
+@media screen and (min-width: 1024px) {
+    .video-container video {
+        width: 42vh;
+        height: auto;
+    }
 }
