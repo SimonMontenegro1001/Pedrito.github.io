@@ -1,0 +1,118 @@
+program.cs 
+
+using System;
+using EspacioPersonaje;
+
+namespace MyApp // Note: actual namespace depends on the project name.
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            var partida = new Juego();
+
+            var personajes = new List<PersonajeBase>();
+
+            var p1 = partida.CrearJugador(50,"XxMataAbuelasxX");
+            var p2 = partida.CrearJugador(20);
+
+            personajes.Add(p1);
+            personajes.Add(p2);
+
+            
+            MostrarDatosJugadores(personajes);
+
+            bool ter = true;
+            while (ter)
+            {
+                for (int i = 0; i < personajes.Count; i++)
+                {
+                    ter = partida.Atacar(personajes[i],personajes[GenerarNumeroRandom(i,personajes.Count,0)]);
+                    if (ter)
+                    {
+                        break;
+                    }
+                }
+            }
+
+
+            
+            void MostrarDatosJugadores(List<PersonajeBase> personajes) {
+                foreach (var personaje in personajes)
+                {
+                    System.Console.WriteLine("Nombre del personaje: " + personaje.Nombre);
+                    System.Console.WriteLine("vida: " + personaje.Vida);
+                    System.Console.WriteLine("fuerza: " + personaje.Fuerza);
+                }
+            }
+            
+            int GenerarNumeroRandom(int menos,int final,int inicio = 0) {
+                Random random = new Random();
+                int num = menos;
+                do {
+                    num = random.Next(inicio,final);
+                } while (num == menos);
+                return num;
+            }
+        }
+
+    }
+}
+
+FabricaPersonajes.cs 
+
+using System;
+
+namespace EspacioPersonaje
+{
+    internal class Juego
+    {
+            public PersonajeBase CrearJugador(int fuerza,string nombre = "anonimo")
+            {
+                var enemigo = new PersonajeBase();
+                enemigo.Nombre = nombre;
+                enemigo.Fuerza = fuerza;
+                return enemigo;
+            }
+            public bool Atacar(PersonajeBase atacante,PersonajeBase defensor)
+            {
+                var nuevaVida = defensor.Defensa(atacante.Ataque());
+                if (nuevaVida <= 0)
+                {
+                    System.Console.WriteLine("El Personaje " + defensor.Nombre + " Perdio.");
+                    return false;
+                } else {
+                    System.Console.WriteLine(atacante.Nombre + " ataco a " + defensor.Nombre + " (quedo con " + nuevaVida +" puntos de vida)");
+                    return true;
+                }
+            }
+    }
+}
+
+Personaje.cs
+
+using System;
+
+namespace EspacioPersonaje 
+{
+    internal class PersonajeBase
+    {
+
+        private string nombre;
+        private int fuerza;
+        private int vida = 100;
+
+        public string Nombre { get => nombre; set => nombre = value; }
+        public int Fuerza { get => fuerza; set => fuerza = value; }
+        public int Vida { get => vida; }
+
+        public int Ataque() {
+            return this.fuerza;
+        }
+
+        public int Defensa(int danio) {
+            vida -= danio;
+            return this.vida;
+        }
+}
+}
